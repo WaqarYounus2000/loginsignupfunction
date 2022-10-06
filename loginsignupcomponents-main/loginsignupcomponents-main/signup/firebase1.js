@@ -71,6 +71,7 @@ function Loginfunction(email, password) {
                     console.log("/////////////Document data:////////////////", docSnap.data());
                     let DATA = docSnap.data();
                     myResolve(DATA)
+                    // localStorage.setItem('mydata',JSON.stringify(DATA));
 
                 } else {
                     console.log("No such document!");
