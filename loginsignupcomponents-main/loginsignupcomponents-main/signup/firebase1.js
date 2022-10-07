@@ -30,10 +30,10 @@ function signupfunction(email, password, fullname, fathername, dateofbirth, phon
             const user = userCredential.user;
             // storing data to firestore database
             await setDoc(doc(db, "users", user.uid), {
-                Email: email,
-                Password: password,
                 Fullname: fullname,
                 FatherName: fathername,
+                Email: email,
+                Password: password,
                 Dateofbirth: dateofbirth,
                 Phonenumber: phonenumber,
             });
@@ -43,6 +43,8 @@ function signupfunction(email, password, fullname, fathername, dateofbirth, phon
                     console.log("Email sent");
                 })
                 .catch((err) => console.log(err));
+
+            
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -71,7 +73,6 @@ function Loginfunction(email, password) {
                     console.log("/////////////Document data:////////////////", docSnap.data());
                     let DATA = docSnap.data();
                     myResolve(DATA)
-                    // localStorage.setItem('mydata',JSON.stringify(DATA));
 
                 } else {
                     console.log("No such document!");

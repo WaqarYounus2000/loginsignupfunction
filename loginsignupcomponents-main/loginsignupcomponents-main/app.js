@@ -23,16 +23,15 @@ loginbutton.onclick = async () => {
     let password = document.getElementById('passID');
 
     let gettingdata = await Loginfunction(email.value, password.value); /*fetching data from firebase*/
-    
-    console.log('this line should be after data printing');
     console.log('///////////////////////////////////////////////////////////////////////////////////////');
     console.log('data from server:' + gettingdata.Email);
     localStorage.setItem('mydata',JSON.stringify(gettingdata));
     window.location.replace('./profile.html');
+    alert(gettingdata)
 
 }
 
-
+// onAuthStateChangedfunction();
 
 
 
