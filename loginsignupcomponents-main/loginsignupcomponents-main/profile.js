@@ -17,6 +17,7 @@ stateobserver.then(() => {
 
 }).catch(() => {
     let bodY = document.getElementById('sectionerrorheadingID');
+    bodY.style.display = 'flex'
     bodY.innerHTML += '<h3 style="color:red;">Verification Error!</h3>';
     bodY.innerHTML += '<p style="font-size:0.7em">Email is not verified, a confirmation email has been sent check your inbox</p>';
     bodY.innerHTML += `<a style="font-size:0.6em;color:blue;text-decoration:underline;">${mydata.Email}</a>`
