@@ -1,5 +1,9 @@
 body{
     margin: 0px;
+    display: flex;
+    flex-direction: column;
+
+    
 }
 
 header{
@@ -55,5 +59,31 @@ header{
     background: #00d7b3;
     color: #fff;
     cursor: pointer;
+
+}
+
+
+
+footer{
+    background: #2b373a;
+    padding: 0px;
+    margin: 0px;
+    height: 210px;
+    position: absolute;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center */
+    top: 100vh;
+    width: 100%;
+}
+
+.sectionerror{
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(238, 234, 234);
+    height: 200px;
+    justify-content: center;
 
 }

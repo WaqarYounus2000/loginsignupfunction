@@ -97,11 +97,16 @@ function Loginfunction(email, password) {
     })
 }
 
-function UserloggedOut() {
+function userlogoutfunction(){
     auth.signOut().then(() => {
-        alert('user logged out')
+        alert('user logging out...')
+        window.location.replace('./index.html')
     })
+
 }
+
+
+
 
 
 function observer() {
@@ -125,14 +130,22 @@ function observer() {
 
 
             } 
-            else {
-                alert('no such document!')
-
-            }
+           
         });
 
     }
     )
 }
 
-export { signupfunction, Loginfunction, UserloggedOut, observer }
+
+
+
+
+
+
+
+
+
+
+
+export { signupfunction, Loginfunction, observer,userlogoutfunction}
