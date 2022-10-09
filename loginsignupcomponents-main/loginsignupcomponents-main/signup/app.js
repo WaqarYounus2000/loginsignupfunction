@@ -6,7 +6,7 @@ import { signupfunction } from './firebase1.js'
 const signupbutton = document.getElementById('signupbuttonID');
 
 signupbutton.onclick = () => {
-    signupbutton.innerHTML=`<img style="width:48px; background-color:transparent;" src="../images/loader1.gif"></img>`
+    // signupbutton.innerHTML=`<img style="width:24px;" src="../images/loader.gif"></img>`
     let fullname = document.getElementById('fullname');
     let fathername = document.getElementById('fathernameID');
     let dateofbirth = document.getElementById('birthdate');
