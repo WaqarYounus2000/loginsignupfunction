@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
 import { doc, setDoc, getDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 const firebaseConfig = {
@@ -22,12 +22,13 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const database = getDatabase();
 const db = getFirestore();
-
+var users
 
 function signupfunction(email, password, fullname, fathername, dateofbirth, phonenumber) {
     createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
             const user = userCredential.user;
+            users = userCredential.user;
             // storing data to firestore database
             await setDoc(doc(db, "users", user.uid), {
                 Fullname: fullname,
@@ -44,7 +45,7 @@ function signupfunction(email, password, fullname, fathername, dateofbirth, phon
                 })
                 .catch((err) => console.log(err));
 
-            
+
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -103,7 +104,30 @@ function UserloggedOut() {
 }
 
 
+async function stateobserver() {
+   await onAuthStateChanged(auth, (users) => {
+        if (users) {
+            if (users.emailVerified === true) {
+                console.log(users.emailVerified)
+                console.log(users)
+              
+                
+            }
+            else {
+                console.log(users)
+                
+                
+            }
+        }
+
+    });
+   
 
 
 
-export { signupfunction, Loginfunction, UserloggedOut };
+
+
+
+}
+
+export { signupfunction, Loginfunction, UserloggedOut, stateobserver };
