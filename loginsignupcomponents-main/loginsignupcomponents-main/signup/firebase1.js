@@ -22,7 +22,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const database = getDatabase();
 const db = getFirestore();
-var users
+var users;
 
 function signupfunction(email, password, fullname, fathername, dateofbirth, phonenumber) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -104,30 +104,35 @@ function UserloggedOut() {
 }
 
 
-async function stateobserver() {
-   await onAuthStateChanged(auth, (users) => {
-        if (users) {
-            if (users.emailVerified === true) {
-                console.log(users.emailVerified)
-                console.log(users)
-              
-                
-            }
+function observer() {
+    return new Promise(function (myResolve, myReject) {
+        onAuthStateChanged(auth, (users) => {
+            if (users) {
+                const uid = users.uid;
+                if (users.emailVerified === true) {
+                    console.log(users.emailVerified)
+                    console.log(users)
+                    myResolve(()=>{
+                        return true})
+                    
+                }
+                else {
+                    console.log(users)
+                    myReject(()=>{
+                        return false})
+                    
+                }
+
+
+            } 
             else {
-                console.log(users)
-                
-                
+                alert('no such document!')
+
             }
-        }
+        });
 
-    });
-   
-
-
-
-
-
-
+    }
+    )
 }
 
-export { signupfunction, Loginfunction, UserloggedOut, stateobserver };
+export { signupfunction, Loginfunction, UserloggedOut, observer }
